@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SMTIDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="AssignmentId" />
+    </Key>
+    <Property Name="AssignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StudentNumber" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_dbo_Assignments_dbo_Projects_ProjectCode" FromRole="Assignments" ToRole="Projects" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_dbo_Assignments_dbo_Students_StudentNumber" FromRole="Assignments" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectCode" />
+    </Key>
+    <Property Name="ProjectCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Assignments" Relationship="Self.FK_dbo_Assignments_dbo_Projects_ProjectCode" FromRole="Projects" ToRole="Assignments" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentNumber" />
+    </Key>
+    <Property Name="StudentNumber" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Assignments" Relationship="Self.FK_dbo_Assignments_dbo_Students_StudentNumber" FromRole="Students" ToRole="Assignments" />
+  </EntityType>
+  <Association Name="FK_dbo_Assignments_dbo_Projects_ProjectCode">
+    <End Role="Projects" Type="Self.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectCode" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="ProjectCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Assignments_dbo_Students_StudentNumber">
+    <End Role="Students" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentNumber" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="StudentNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SMTIDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <AssociationSet Name="FK_dbo_Assignments_dbo_Projects_ProjectCode" Association="Self.FK_dbo_Assignments_dbo_Projects_ProjectCode">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Assignments_dbo_Students_StudentNumber" Association="Self.FK_dbo_Assignments_dbo_Students_StudentNumber">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

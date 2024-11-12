@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SMTIWebSite.Models.Assignment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.StudentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignmentDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.StudentNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignmentDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.AssignmentId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.AssignmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AssignmentId })
+        </td>
+    </tr>
+}
+
+</table>

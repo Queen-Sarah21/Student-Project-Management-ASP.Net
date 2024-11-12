@@ -1,0 +1,6 @@
+C:\DW4_Autumn2024\Lab3\SMTIDatabase\bin\Debug\SMTIDatabase.dacpac
+C:\DW4_Autumn2024\Lab3\SMTIDatabase\obj\Debug\SMTIDatabase.sqlproj.AssemblyReference.cache
+C:\DW4_Autumn2024\Lab3\SMTIDatabase\obj\Debug\SMTIDatabase.dll
+C:\DW4_Autumn2024\Lab3\SMTIDatabase\obj\Debug\SMTIDatabase.pdb
+C:\DW4_Autumn2024\Lab3\SMTIDatabase\bin\Debug\SMTIDatabase.dll
+C:\DW4_Autumn2024\Lab3\SMTIDatabase\bin\Debug\SMTIDatabase.pdb

@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">ASP.NET</h1>
+        <p>
+            Objective
+            At the end of this lab, you are able to use MVC, Entity Framework, and ASP.NET Scaffolding to create a web application that provides an interface to an existing database and deploy the Web site and database to Azure.
+        </p>
+        </section>
+        @Html.ActionLink("List of Students", "Index", "Students")<br /> 
+        @Html.ActionLink("List of Projects", "Index", "Projects")<br /> 
+        @Html.ActionLink("List of Project Assignments", "Index", "Assignments")
+    </div>
+</main>
